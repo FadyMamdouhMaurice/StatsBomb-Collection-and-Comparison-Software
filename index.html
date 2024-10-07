@@ -1,0 +1,3597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ARQAM FC</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/alertMessagesStyleSheet.css">
+    <link rel="stylesheet" type="text/css" href="css/eventsListStyleSheet.css">
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" type="image/png " src="arqam-logo.png">
+</head>
+<body>
+
+    <div id="alertBox" class="alert" style="display: none;">
+        <span class="closebtn" onclick="closeAlert()">&times;</span>
+        <p id="alertMessage"></p>
+    </div>
+
+
+    <!-- Excel file input -->
+    <!--<input id="excelFileInput" type="file" accept=".xlsx,.xls" />-->
+
+    <button onclick="downloadExcel()">Download Excel</button>
+
+    <input class = "el-button" id="chooseVideo" type="file" accept="video/* ">
+
+    <div class="f-1 d-flex">
+        <div class="wrapper" id="actions">
+
+            <!--******************************************** No CHAIN ACTIONS **************************************************************-->
+            <div class="f-auto d-grid gap-1 m-0 scroll startDiv" style="visibility: hidden" id="startDivOpen">
+                <div class="p-4" id="startBtn">
+                    <div class="text-right mb-3" id="halfStartDiv">
+                        <button type="button" class="el-button el-button-key el-button--primary is-plain" id="halfStartBtn">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1 pe-5">
+                                        half start
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">s</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+            <!--************************************************** FIRST DIV ****************************************************************************-->
+
+            <div class="f-auto d-grid gap-1 m-0 scroll noChainDiv " style="visibility: hidden" id="noChainDivOpen">
+                <div class="p-4">
+                    <div class="text-right mb-3" id="duelDiv">
+                        <button id="duelBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1 pe-4">
+                                        duel
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">a</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="blockDiv">
+                        <button id="blockBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        block
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">b</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="foulCommittedDiv">
+                        <button id="foulCommittedBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1 pe-5">
+                                        foul committed
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">c</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="dribblePastDiv">
+                        <button id="dribblePastBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto  mt-1">
+                                        dribble past
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">d</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="passDiv">
+                        <button id="passBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        pass
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">e</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="clearanceDiv">
+                        <button id="clearanceBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        clearance
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">f</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="pressureDiv">
+                        <button id="pressureBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        pressure
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">g</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="goalKeeperDiv">
+                        <button id="goalKeeperBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        goal keeper
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">q</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="ballRecoveryDiv">
+                        <button id="ballRecoveryBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        ball recovery
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">r</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="shotDiv">
+                        <button id="shotBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        shot
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">s</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="interceptionDiv">
+                        <button id="interceptionBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        interception
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">v</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="foulWonDiv">
+                        <button id="foulWonBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        foul won
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">z</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="shieldDiv">
+                        <button id="shieldBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        shield
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="fiftyFiftyDiv">
+                        <button id="fiftyFiftyBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        fifty fifty
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="refereeBallDropDiv">
+                        <button id="refereeBallDropBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        referee ball drop
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="ownGoalAgainstDiv">
+                        <button id="ownGoalAgainstBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        own goal against
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="ownGoalForDiv">
+                        <button id="ownGoalForBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        own goal for
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="errorDiv">
+                        <button id="errorBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        error
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="offsideDiv">
+                        <button id="offsideBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        offside
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="badBehaviourDiv">
+                        <button id="badBehaviourBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        bad behaviour
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="halfEndDiv">
+                        <button id="halfEndBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        half end
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="injuryStoppageDiv">
+                        <button id="injuryStoppageBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        injury stoppage
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll duelDiv" style="visibility: hidden" id="duelDivOpen">
+                <div class="text-right mb-3" id="tackleDiv">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="tackleBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    tackle
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3" id="aerialLostDiv">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="aerialLostBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    aerial lost
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll blockDiv" style="visibility: hidden" id="blockDivOpen">
+                <div class="text-right mb-3" id="bolckDefensveDiv">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="blockDefensiveBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    defensive
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3" id="offensiveBolckDiv">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="blockOffensiveBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    offensive
+                                </div>
+                                <div class="auto">
+
+                                    [<strong class="text-shortcut">2</strong>]
+
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll foulCommittedDiv" style="visibility: hidden" id="foulCommittedDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="noCardBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    no card
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="yellowCardBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    yellow card
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="secondYellowCardBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    second yellow
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="redCardBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    red card
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">4</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll foulCommittedTypeDiv" style="visibility: hidden" id="foulCommittedTypeDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="foulRegulerBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    reguler
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="foulHandballBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    hand ball
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="foulOutBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    foul out
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="foul6SecondsBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    6 seconds
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">4</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="foulBackPassBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    backpass
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">5</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="foulDangerousPlayBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    dangerous play
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">6</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="foulDiveBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    dive
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">7</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="f-auto d-grid gap-1 m-0 scroll passNoChainTypeDiv" style="visibility: hidden" id="passNoChainTypeDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="interceptionPassBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    interception
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="recoveryPassBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    recovery
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="kickOffPassBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    kick off
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">4</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="freeKickPassBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    free kick
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">5</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="cornerPassBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    corner
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">6</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="throwInPassBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    throw in
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">7</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="goalKickPassBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    goal kick
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">8</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll clearanceDiv" style="visibility: hidden" id="clearanceDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="rightFootClearanceBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    right foot
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="leftFootClearanceBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    left foot
+                                </div>
+                                <div class="auto">
+
+                                    [<strong class="text-shortcut">3</strong>]
+
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="headClearanceBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    head
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">4</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="otherClearanceBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    other
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">9</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll pressureDiv" style="visibility: hidden" id="pressureDivOpen">
+                <div class="text-right mb-3">
+                    <h3 class="mt-0">End Pressure</h3>
+                    <div> No Valid events to add! </div>
+                    <button type="button" class="el-button el-button-key text-left el-button--danger is-plain" id="cancelBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    cancel?
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll goalKeeperDiv" style="visibility: hidden" id="goalKeeperDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="collectedBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    collected
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="punchBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    punch
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="smotherBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    smother
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="goalSavedBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    shot saved
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">4</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotFacedBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    shot faced
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">5</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="keeperSweeperBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    keeper sweeper
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">6</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="goalConcededBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    goal conceded
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">7</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="penaltyConcededBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    penalty conceded
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">8</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="penaltySavedBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    penalty saved
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">9</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="saveBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    save
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">10</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotSavedOffTBtn;">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    shot saved off t
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">11</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="savedToPostBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    saved to post
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">12</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotSavedToPostKeeperBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    shot saved to post
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">13</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="penaltySavedToPostBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    penalty saved to post
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">14</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll ballRecoveryDiv" style="visibility: hidden" id="ballRecoveryDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="ballRecoveryCompleteBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    complete
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="ballRecoveryFailBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    fail
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll shotDiv" style="visibility: hidden" id="shotDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotOpenPlayBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    open play
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotFreeKickBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    free kick
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotPenaltyBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    penalty
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotCornerBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    corner
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">4</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotKickOffBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    kick off
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">5</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll tackleAndInterceptionDiv" style="visibility: hidden" id="tackleAndInterceptionDivOpen">
+                <div class="text-right">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="wonBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    won
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="successInBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    success in
+                                </div>
+                                <div class="auto">
+
+                                    [<strong class="text-shortcut">2</strong>]
+
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="successOutBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    success out
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="lostInBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    lost in
+                                </div>
+                                <div class="auto">
+
+                                    [<strong class="text-shortcut">4</strong>]
+
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="lostOutBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    lost out
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">5</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll foulWonNoChainDiv" style="visibility: hidden" id="foulWonNoChainDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="notPenaltyBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    not penalty
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="penaltyBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    penalty
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll fiftyFiftyDiv" style="visibility: hidden" id="fiftyFiftyDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="fiftyWonBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    won
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="successToTeamBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    success to team
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="successToOppositionBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    success to opposition
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="lostBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    lost
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">4</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll badBehaviourDiv" style="visibility: hidden" id="badBehaviourDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id=" yellowCardBadBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    yellow card
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="secondYellowCardBadBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    second yellow
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="redCardBadBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    red card
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!--************************************************** SECOND DIV ****************************************************************************-->
+            <!--***************************************************** PASS NO CHAIN ******************************************************-->
+            <!--************************************* PASS TYPE **************************************-->
+            <!--************************************* PASS HEIGHT **************************************-->
+            <div class="f-auto d-grid gap-1 m-0 scroll passNoChainHeightDiv" style="visibility: hidden" id="passNoChainHeightDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="groundPassBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    ground
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="lowPassBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    low
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="highPassBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    high
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll passNoChainHeightRecoveryAndInterceptionDiv" style="visibility: hidden" id="passNoChainHeightRecoveryAndInterceptionDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="groundPassRecoveryAndInterceptionBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    ground
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="lowPassRecoveryAndInterceptionBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    low
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="highPassRecoveryAndInterceptionBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    high
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="f-auto d-grid gap-1 m-0 scroll passNoChainThrowInHeightDiv" style="visibility: hidden" id="passNoChainThrowInHeightDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="lowPassThrowInBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    low
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="highPassThrowInBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    high
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!--************************************* PASS BODY **************************************-->
+
+            <div class="f-auto d-grid gap-1 m-0 scroll passNoChainGroundBodyRecoveryAndInterceptionDiv" style="visibility: hidden" id="passNoChainGroundBodyRecoveryAndInterceptionDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="rightFootBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    right foot
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="leftFootBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    left foot
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="otherBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    other
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll passNoChainlowAndHighBodyRecoveryAndInterceptionDiv" style="visibility: hidden" id="passNoChainlowAndHighBodyRecoveryAndInterceptionDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="rightFootBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    right foot
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="leftFootBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    left foot
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="headBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    head
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">4</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="otherBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    other
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll passNoChainBodyDiv" style="visibility: hidden" id="passNoChainBodyDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="rightFootBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    right foot
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="leftFootBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    left foot
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!--************************************* PASS DURATION **************************************-->
+
+            <div class="f-auto d-grid gap-1 m-0 scroll passDurationDiv" style="visibility: hidden" id="passDurationDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key text-left el-button--danger is-plain" id="cancelBtn2">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    cancel?
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+
+            <!--************************************* PASS OUTCOME **************************************-->
+
+            <div class="f-auto d-grid gap-1 m-0 scroll passOutcomeDiv" style="visibility: hidden" id="passOutcomeDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="passDefaultBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    default
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">e</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="passCompleteBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    complete
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">w</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="passInCompleteBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    incomplete
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">q</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="passOutBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    out
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">a</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="passOffsideBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    pass-offside
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">s</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="cancelBtn3">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    cancel?
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll passDefaultOutcomeDiv" style="visibility: hidden" id="DefaultOutcomeDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="passCompleteBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    complete
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="passInCompleteBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    incomplete
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="passOutBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    out
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="passOffsideBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    pass-offside
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">4</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="passInjuryClearanceBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    injury clearance
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">5</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="passUnknownBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    unknown
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">6</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!--************************************* PASS TECHNIQUE **************************************-->
+
+            <div class="f-auto d-grid gap-1 m-0 scroll cornerTechniqueDiv" style="visibility: hidden" id="cornerTechniqueDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="inswingingBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    inswinging
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="outswingingBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    outswinging
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="straightBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    straight
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!--***************************************************** PASS NO CHAIN ******************************************************-->
+
+
+            <div class="f-auto d-grid gap-1 m-0 scroll headClearanceDiv" style="visibility: hidden" id="headClearanceDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="regularBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    regular
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="aerialWonBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    aerial won
+                                </div>
+                                <div class="auto">
+
+                                    [<strong class="text-shortcut">2</strong>]
+
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="f-auto d-grid gap-1 m-0 scroll endPressureDiv" style="visibility: hidden" id="endPressureDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key is-plain" id="endPressureBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    end pressure
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">g</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                    <button type="button" class="el-button el-button-key text-left el-button--danger is-plain" id="cancelBtn4">
+                        <!----><!---->
+                        <span>
+                            Cancel?
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!--***************************************************** GOAL KEEPER NO CHAIN ***************************************************-->
+
+            <div class="f-auto d-grid gap-1 m-0 scroll collectedDiv" style="visibility: hidden" id="collectedDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="collectedSuccessBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    success
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="collectedFailBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    fail
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">4</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="collectedTwiceBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    collected twice
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">5</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll punchDiv" style="visibility: hidden" id="punchDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="punchFailBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    fail
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">4</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="punchInPlaySafeBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    in play safe
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">6</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="punchInPlayDangerBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    in play danger
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">7</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="punchOutBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    punched out
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">13</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll smotherDiv" style="visibility: hidden" id="smotherDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="smotherWonBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    won
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="smotherLostInPlayBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    lost in play
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">14</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="smotherLostOutBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    lost out
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">15</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="smotherSuccessInPlayBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    success in play
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">16</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="smotherSuccessOutBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    success out
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">17</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll savedDiv" style="visibility: hidden" id="savedDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="savedSuccessBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    success
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="savedInPlaySafeBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    in play safe
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">6</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="savedInPlayDangerBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    in play danger
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">7</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="savedTwiceBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    saved twice
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">8</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="savedTouchOutBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    touched out
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">9</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll shotFacedDiv" style="visibility: hidden" id="shotFacedDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotFacedSetBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    set
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotFacedProneBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    prone
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotFacedMovingBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    moving
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll keeperSweeperDiv" style="visibility: hidden" id="keeperSweeperDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="keeperSweeperClearBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    clear
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">11</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="keeperSweeperClaimBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    claim
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">12</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll goalAndPenaltyConcededDiv" style="visibility: hidden" id="goalAndPenaltyConcededDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="goalAndPenaltyConcededTouchedInBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    touched in
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">9</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="goalAndPenaltyConcededNoTouchBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    no touch
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">10</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll savedToPostDiv" style="visibility: hidden" id="savedToPostDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="savedInPlaySafeBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    in play safe
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">6</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="savedInPlayDangerBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    in play danger
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">7</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="savedTouchOutBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    touched out
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">9</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll shotSavedStateDiv" style="visibility: hidden" id="shotSavedStateDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotSavedStateSetBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    set
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotSavedStateProneBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    prone
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotSavedStateMovingBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    moving
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll goalKeeperBodyDiv" style="visibility: hidden" id="goalKeeperBodyDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="goalBothHandsBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    both hands
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="goalRightFootBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    right foot
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="goalLeftFootBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    left foot
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="goalHeadBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    head
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">4</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="goalRightHandBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    right hand
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">5</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="goalLeftHandBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    left hand
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">6</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="goalChestBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    chest
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">7</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="f-auto d-grid gap-1 m-0 scroll shotSavedTechniqueDiv" style="visibility: hidden" id="shotSavedTechniqueDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotSavedDivingBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    diving
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotSavedStandingBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    standing
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!--***************************************************** GOAL KEEPER NO CHAIN ***************************************************-->
+            <!--*********************************************** SHOT NO CHAIN ********************************************-->
+
+            <div class="f-auto d-grid gap-1 m-0 scroll shotOpenPlayDiv" style="visibility: hidden" id="shotOpenPlayDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="rightFootShotBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    right foot
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="leftFootShotBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    left foot
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="headShotBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    head
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">4</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="otherShotBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    other
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="f-auto d-grid gap-1 m-0 scroll shotChainDiv" style="visibility: hidden" id="shotChainDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="rightFootShotBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    right foot
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="leftFootShotBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    left foot
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="f-auto d-grid gap-1 m-0 scroll shotOpenPlayTechniqueRLDiv" style="visibility: hidden" id="shotOpenPlayTechniqueRLDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotNormalBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    normal
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotVolleyBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    volley
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotHalfVolleyBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    half volley
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotOverheadKickBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    overhead kick
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">5</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotLobBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    lob
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">6</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotBackheelBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    backheel
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">7</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="f-auto d-grid gap-1 m-0 scroll shotOpenPlayTechniqueHDiv" style="visibility: hidden" id="shotOpenPlayTechniqueHDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotNormalBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    normal
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotVolleyBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    volley
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotHalfVolleyBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    half volley
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotDivingHeaderBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    diving header
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">4</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotLobBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    lob
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">6</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="f-auto d-grid gap-1 m-0 scroll shotOpenPlayTechniqueODiv" style="visibility: hidden" id="shotOpenPlayTechniqueODivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotNormalBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    normal
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotVolleyBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    volley
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotHalfVolleyBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    half volley
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotOverheadKickBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    overhead kick
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">5</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotLobBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    lob
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">6</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="f-auto d-grid gap-1 m-0 scroll shotFreeKickAndPenaltyTechniqueDiv" style="visibility: hidden" id="shotFreeKickAndPenaltyTechniqueDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotNormalBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    normal
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotLobBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    lob
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">6</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotBackheelBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    backheel
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">7</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="f-auto d-grid gap-1 m-0 scroll shotKickOffTechniqueDiv" style="visibility: hidden" id="shotKickOffTechniqueDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotNormalBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    normal
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotLobBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    lob
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">6</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="f-auto d-grid gap-1 m-0 scroll shotDurationDiv" style="visibility: hidden" id="shotDurationDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key text-left el-button--danger is-plain" id="cancelBtn5">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    cancel?
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="f-auto d-grid gap-1 m-0 scroll shotOutcomeDiv" style="visibility: hidden" id="shotOutcomeDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotBlockBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    block
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotGoalBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    goal
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotSavedBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    saved
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotOffTBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    off t
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">4</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotPostBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    post
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">5</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotWaywardBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    wayward
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">6</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="shotSavedToPostBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    saved to post
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">7</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="savedOffTBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    saved off t
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">8</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+
+            <!--*********************************************** SHOT NO CHAIN ********************************************-->
+
+
+            <div class="f-auto d-grid gap-1 m-0 scroll notPenaltyNoChainDiv" style="visibility: hidden" id="notPenaltyNoChainDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="notAdvantageNoChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    not advantage
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="advantageNoChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    advantage
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+
+
+
+            <!--******************************************************************************* No CHAIN ACTIONS **********************************************************************************************************-->
+            <!--******************************************************************************** CHAIN ACTIONS ************************************************************************************************************-->
+
+            <div class="f-auto d-grid gap-1 m-0 scroll chainDiv" style="visibility: hidden" id="chainDivOpen">
+                <div class="p-4">
+                    <div class="text-right mb-3" id="passChainDiv">
+                        <button id="passChainBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        pass
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">e, w</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="dispossessedDiv">
+                        <button id="dispossessedBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        dispossessed
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">a</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="foulCommittedDiv">
+                        <button id="foulCommittedBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1 pe-4">
+                                        foul committed
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">c</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="dribbleDiv">
+                        <button id="dribbleBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto  mt-1">
+                                        dribble
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">d</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="ballRecoveryDiv">
+                        <button id="ballRecoveryBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        ball recovery
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">r</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="shotDiv">
+                        <button id="shotBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        shot
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">s</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="miscontrolDiv">
+                        <button id="miscontrolBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        miscontrol
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">v</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="foulWonDiv">
+                        <button id="foulWonBtn" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        foul won
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">z</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="refereeBallDropDiv">
+                        <button id="refereeBallDropBtn2" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        referee ball drop
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="offsideDiv">
+                        <button id="offsideBtn2" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        offside
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="errorDiv">
+                        <button id="errorBtn2" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        error
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="ownGoalAgainstDiv">
+                        <button id="ownGoalAgainstBtn2" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        own goal against
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="ownGoalForDiv">
+                        <button id="ownGoalForBtn2" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        own goal for
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="badBehaviourDiv">
+                        <button id="badBehaviourBtn2" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        bad behaviour
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="halfEndDiv">
+                        <button id="halfEndBtn2" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        half end
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3" id="injuryStoppageDiv">
+                        <button id="injuryStoppageBtn2" type="button" class="el-button el-button-key el-button--primary is-plain">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        injury stoppage
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="f-auto d-grid gap-1 m-0 scroll dribbleDiv" style="visibility: hidden" id="dribbleDivOpen">
+                    <div class="text-right mb-3">
+                        <button type="button" class="el-button el-button-key el-button--primary is-plain" id="dribbleCompleteBtn">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1">
+                                        complete
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">1</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="text-right mb-3">
+                        <button type="button" class="el-button el-button-key el-button--primary is-plain" id="dribbleInCompleteBtn">
+                            <span>
+                                <div class="d-flex align-space-between valign-center">
+                                    <div class="f-auto mt-1 pe-4">
+                                        incomplete
+                                    </div>
+                                    <div class="auto">
+                                        [<strong class="text-shortcut">2</strong>]
+                                    </div>
+                                </div>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="f-auto d-grid gap-1 m-0 scroll passChainHeightDiv" style="visibility: hidden" id="passChainHeightDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="groundPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    ground
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="lowPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    low
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="highPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    high
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="f-auto d-grid gap-1 m-0 scroll groundPassChainDiv" style="visibility: hidden" id="groundPassChainDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="rightFootPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    right foot
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="leftFootPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    left foot
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="keeperArmPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    keeper arm
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">5</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="otherPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    other
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="noTouchPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    noTouch
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">7</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="f-auto d-grid gap-1 m-0 scroll lowPassChainDiv" style="visibility: hidden" id="lowPassChainDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="rightFootPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    right foot
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="leftFootPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    left foot
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="headPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    head
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">4</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="keeperArmPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    keeper arm
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">5</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="dropKickPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    drop kick
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">6</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="otherPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    other
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="noTouchPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    noTouch
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">7</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="f-auto d-grid gap-1 m-0 scroll highPassChainDiv" style="visibility: hidden" id="highPassChainDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="rightFootPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    right foot
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="leftFootPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    left foot
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">3</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="headPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    head
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">4</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="keeperArmPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    keeper arm
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">5</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="dropKickPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    drop kick
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">6</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="otherPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    other
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="noTouchPassChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    noTouch
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">7</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="f-auto d-grid gap-1 m-0 scroll injuryStoppageDiv" style="visibility: hidden" id="injuryStoppageDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="injuryInChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    in chain
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="injuryNotInChainBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    not in chain
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="f-auto d-grid gap-1 m-0 scroll dribbleOverrunDiv" style="visibility: hidden" id="dribbleOverrunDivOpen">
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="overrunBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1">
+                                    overrun
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">1</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+                <div class="text-right mb-3">
+                    <button type="button" class="el-button el-button-key el-button--primary is-plain" id="notOverrunBtn">
+                        <span>
+                            <div class="d-flex align-space-between valign-center">
+                                <div class="f-auto mt-1 pe-4">
+                                    not overrun
+                                </div>
+                                <div class="auto">
+                                    [<strong class="text-shortcut">2</strong>]
+                                </div>
+                            </div>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+
+            <!--******************************************************************************** CHAIN ACTIONS ************************************************************************************************************-->
+        </div>
+        <div class="f-1 position-absolute bottom-2 end-0">
+            <video controls autoplay></video>
+        </div>
+
+
+
+    </div>
+
+    <div id="extraDetails" class="extra-details"></div>
+    <div id="eventList" class="event-list"></div>
+
+    <script type="text/javascript" src="js/myJavascript.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="js/excelGenerator.js"></script>
+    <script src="js/compareAndCorrect.js"></script>
+    <script src="js/eventsListJavascript.js"></script>
+    <script src="js/downloadComparison.js"></script>
+    <script src="js/videoCutter.js"></script>
+    
+</body>
+</html>                                                   

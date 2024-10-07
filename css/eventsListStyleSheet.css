@@ -1,0 +1,107 @@
+﻿.extra-details {
+    width: 100%;
+    padding: 10px;
+    background-color: #e0f7fa; /* Light blue background */
+    border-radius: 5px;
+    margin-top: 200px; /* Spacing between the extra details and Video */
+    margin-bottom: 10px; /* Spacing between the extra details and Video */
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: black;
+    display: flex;
+    /*flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+    flex-wrap: nowrap; /* Keep items in a single line for horizontal scrolling */
+    gap: 10px; /* Space between the extra attributes */
+    /* Positioning at the bottom */
+    position: fixed;
+    bottom: 10%;
+    left: 0;
+    z-index: 999; /* Ensure it stays above other content */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-y: hidden; /* Disable vertical scrolling */
+    height: auto; /* Remove fixed height to accommodate content height */
+}
+.extra-item {
+    width: 150px;
+    border: 2px solid red;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 5px;
+    background-color: #f8d7da; /* Light red background */
+    color: black;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column; /* Stack time and event name vertically */
+    flex-shrink: 0; /* Prevent shrinking when there are many items */
+    cursor: pointer; /* Change cursor to pointer for extra items */
+}
+
+    .extra-item.highlighted {
+        background-color: yellow;
+    }
+
+/* Optional: Customize scrollbar appearance */
+.extra-list::-webkit-scrollbar {
+    height: 8px; /* Height of the horizontal scrollbar */
+}
+
+.extra-list::-webkit-scrollbar-thumb {
+    background-color: #888; /* Scrollbar thumb color */
+    border-radius: 4px; /* Rounded corners for the scrollbar thumb */
+}
+
+    .extra-list::-webkit-scrollbar-thumb:hover {
+        background-color: #555; /* Darker color when hovering over the scrollbar thumb */
+    }
+
+.event-list {
+    display: flex;
+    flex-wrap: nowrap; /* Keep items in a single line for horizontal scrolling */
+    padding: 10px;
+    background-color: #ffffe0; /* Light yellow background */
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 100%; /* Ensure the container takes full width of its parent */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-y: hidden; /* Disable vertical scrolling */
+    height: auto; /* Remove fixed height to accommodate content height */
+    /* Positioning at the bottom */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000; /* Ensure it stays above other content */
+}
+
+.event-item {
+    width: 150px;
+    border: 2px solid red;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 5px;
+    background-color: #f8d7da; /* Light red background */
+    color: black;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column; /* Stack time and event name vertically */
+    flex-shrink: 0; /* Prevent shrinking when there are many items */
+}
+
+    .event-item.highlighted {
+        background-color: yellow;
+    }
+
+/* Optional: Customize scrollbar appearance */
+.event-list::-webkit-scrollbar {
+    height: 8px; /* Height of the horizontal scrollbar */
+}
+
+.event-list::-webkit-scrollbar-thumb {
+    background-color: #888; /* Scrollbar thumb color */
+    border-radius: 4px; /* Rounded corners for the scrollbar thumb */
+}
+
+    .event-list::-webkit-scrollbar-thumb:hover {
+        background-color: #555; /* Darker color when hovering over the scrollbar thumb */
+    }

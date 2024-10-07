@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <input id="excelFileInput" type="file" accept=".xlsx,.xls" />
+    <button id="uploadButton">Upload Excel</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script>
+        document.getElementById('uploadButton').addEventListener('click', function () {
+            const fileInput = document.getElementById('excelFileInput');
+            const file = fileInput.files[0]; // Access the selected file
+            let correctEvents = []; // List to store each text value
+
+            if (file) {
+                readExcelFile(file)
+                    .then(excelData => {
+                        console.log('Excel data successfully loaded:', excelData);
+                        // Proceed with comparison or further processing
+                        correctEvents = excelData;
+                        localStorage.setItem('correctEvents', JSON.stringify(correctEvents)); // Save to localStorage
+                    })
+                    .catch(error => {
+                        console.error(error.message);
+                    });
+                goToTagging();
+            } else {
+                console.error('No file selected.');
+            }
+        });
+        function goToTagging() {
+            window.location.href = "index.html";
+
+        }
+    </script>
+    <script src="js/compareAndCorrect.js"></script>
+
+</body>
+</html>

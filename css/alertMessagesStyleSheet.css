@@ -1,0 +1,31 @@
+﻿/* Basic Alert Box Styling */
+.alert {
+    padding: 20px;
+    background-color: #f44336; /* Red background */
+    color: white;
+    position: fixed; /* Position the alert box at a fixed position */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust to center */
+    z-index: 1000; /* Ensure it appears above other elements */
+    border-radius: 4px; /* Rounded corners */
+    width: 50%; /* Set a fixed width */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Optional shadow */
+    text-align: left; /* Center text */
+}
+
+/* Close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .closebtn:hover {
+        color: black;
+    }

@@ -1,0 +1,55 @@
+{
+  "name": "umbrella-training",
+  "version": "1.3.0",
+  "main": "main.js",
+  "productName": "Umbrella-Training",
+  "publisher": "Fady Mamdouh",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "build": {
+    "appId": "com.yourcompany.umbrellatraining",
+    "productName": "Umbrella-Training",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "build/**/*",
+      "main.js",
+      "index.html",
+      "homeScreenHtml.html",
+      "preload.js",
+      "package.json",
+      "css/alertMessagesStyleSheet.css",
+      "css/bootstrap.css",
+      "css/bootstrap.min.css",
+      "css/eventsListStyleSheet.css",
+      "css/main.css",
+      "js/bootstrap.min.js",
+      "js/compareAndCorrect.js",
+      "js/eventsListJavascript.js",
+      "js/excelGenerator.js",
+      "js/myJavascript.js",
+      "js/downloadComparison.js",
+      "js/videoCutter.js"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    }
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.1",
+    "electron-store": "^10.0.0",
+    "ffmpeg-static": "^5.2.0",
+    "fluent-ffmpeg": "^2.1.3",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "electron": "^31.3.1",
+    "electron-builder": "^24.13.3"
+  }
+}

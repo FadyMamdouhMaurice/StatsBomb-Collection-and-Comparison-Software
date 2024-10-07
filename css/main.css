@@ -1,0 +1,576 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Ensure content starts at the top */
+    height: 100vh;
+}
+
+.controls {
+    visibility: visible;
+    opacity: 0.5;
+    width: 400px;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    margin-left: -200px;
+    background-color: black;
+    box-shadow: 3px 3px 5px black;
+    transition: 1s all;
+    display: flex;
+}
+#alertMessage {
+    max-height: 400px; /* Set a fixed height (adjust as needed) */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 10px; /* Optional: Add some padding */
+    border: 1px solid #ccc; /* Optional: Add a border */
+}
+
+video, input {
+    display: block;
+}
+video {
+    width: 1250px;
+    height: calc(590px - 70px); /* Adjust height to prevent overlap with extra-details and event-list */
+    margin-bottom: auto;
+    margin-left: 50px;
+    margin-right: 10px;
+    margin-top: 0;
+}
+input {
+    width: 100%;
+}
+h1 {
+    text-align: center;
+    color: orangered;
+}
+.info {
+    background-color: aqua;
+}
+.error {
+    background-color: red;
+    color: white;
+}
+div.scroll {
+    padding: 3px;
+    padding-right: 300px;
+    width: 50%;
+    height: calc(590px - 70px); /* Adjust height to account for extra details and event list */
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+} 
+/*::-webkit-scrollbar-thumb:hover {
+  background:#23ff55; 
+}*/
+/*
+.my-btn-key {
+    width: 100%;
+    font-size: 18px;
+    letter-spacing: .5px;
+    text-align: left;
+    text-transform: capitalize;
+    padding: 10px 50px;
+    border: 2px solid #FF490D;
+    border-radius: 12px;
+    transform: translateY(4px);
+}*/
+.text-shortcut {
+    min-width: 1em;
+    text-align: center;
+    display: inline-block;
+    font-size: 1.32em;
+    font-weight: 700;
+    color: #000000;
+    vertical-align: middle;
+    text-transform: uppercase;
+}
+/*el-button--primary.is-plain {
+    color: #1b998b;
+    background: #e8f5f3;
+    border-color: #a4d6d1;
+}*/
+.el-button-key {
+    width: 100%;
+    font-size: .95rem;
+    letter-spacing: 1px;
+    text-align: right;
+    text-transform: capitalize;
+    padding: 10px!important;
+    
+}
+.el-button {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.el-button {
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #136e64;
+    border-color: #dcdfe6;
+    color: #606266;
+    -webkit-appearance: none;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    margin: 0;
+    transition: .1s;
+    font-weight: 500;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    font-size: 16px;
+    border-radius: 4px;
+}
+button{
+    -webkit-writing-mode: horizontal-tb;
+    font-family: inherit;
+    text-rendering: auto;
+    word-spacing: normal;
+    text-indent: 0px;
+    text-shadow: none;
+    font: 13.3333px Arial;
+}
+
+.align-space-between {
+    justify-content: space-between!important;
+}
+
+.el-button-key:hover {
+    background-color: #FF490D;
+    opacity: 100%;
+    color: #FFFFFF;
+}
+.el-button-key:focus {
+    background-color: #FF490D;
+    opacity: 100%;
+    color: #FFFFFF;
+}
+.el-button--danger {
+    color: #e84855;
+    background: #fdedee;
+    border-color: #f6b6bb;
+}
+.el-button--danger:hover {
+    background-color: #e84855;
+    opacity: 100%;
+    color: #FFFFFF;
+}
+.el-button--danger:focus {
+    background-color: #e84855;
+    opacity: 100%;
+    color: #FFFFFF;
+}
+.text-left {
+    text-align: left!important;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: gray;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #FF490D;
+    opacity: 10%;
+    border-radius: 10px;
+}
+
+.wrapper{
+    position: relative;
+}
+
+
+/************************************************** POSITION OF EACH DIV  WITH OTHERS **********************************************************/
+.startDiv {
+    position: absolute;
+}
+.noChainDiv {
+    position: absolute;
+}
+.duelDiv {
+    position: absolute;
+}
+.blockDiv {
+    position: absolute;
+}
+.foulCommittedDiv {
+    position: absolute;
+}
+.foulCommittedTypeDiv {
+    position: absolute;
+}
+.tackleAndInterceptionDiv {
+    position: absolute;
+}
+
+/************************** PASS DIVS **********************************/
+.passNoChainTypeDiv {
+    position: absolute;
+}
+.passNoChainHeightDiv {
+    position: absolute;
+}
+.passNoChainHeightRecoveryAndInterceptionDiv {
+    position: absolute;
+}
+.passNoChainThrowInHeightDiv {
+    position: absolute;
+}
+.passNoChainGroundBodyRecoveryAndInterceptionDiv {
+    position: absolute;
+}
+.passNoChainlowAndHighBodyRecoveryAndInterceptionDiv {
+    position: absolute;
+}
+.passNoChainBodyDiv {
+    position: absolute;
+}
+.passDurationDiv {
+    position: absolute;
+}
+.passOutcomeDiv {
+    position: absolute;
+}
+.passDefaultOutcomeDiv {
+    position: absolute;
+}
+.cornerTechniqueDiv {
+    position: absolute;
+}
+/************************** PASS DIVS **********************************/
+
+.clearanceDiv {
+    position: absolute;
+}
+.headClearanceDiv {
+    position: absolute;
+}
+.pressureDiv {
+    position: absolute;
+}
+.endPressureDiv {
+    position: absolute;
+}
+/************************** GOAL KEEPER DIVS **********************************/
+.goalKeeperDiv {
+    position: absolute;
+}
+.collectedDiv {
+    position: absolute;
+}
+.punchDiv {
+    position: absolute;
+}
+.smotherDiv {
+    position: absolute;
+}
+.savedDiv {
+    position: absolute;
+}
+.goalKeeperBodyDiv {
+    position: absolute;
+}
+.shotSavedStateDiv{
+    position: absolute;
+}
+.shotSavedTechniqueDiv {
+    position: absolute;
+}
+.shotFacedDiv {
+    position: absolute;
+}
+.keeperSweeperDiv { 
+    position: absolute;
+}
+.goalAndPenaltyConcededDiv {
+    position: absolute;
+}
+.savedToPostDiv {
+    position: absolute;
+}
+/************************** GOAL KEEPER DIVS **********************************/
+
+.ballRecoveryDiv {
+    position: absolute;
+}
+/************************** SHOT NO CHAIN DIVS **********************************/
+
+.shotDiv {
+    position: absolute
+}
+.shotOpenPlayDiv {
+    position: absolute
+}
+.shotChainDiv {
+    position: absolute
+}
+.shotOpenPlayTechniqueRLDiv {
+    position: absolute
+}
+.shotOpenPlayTechniqueHDiv {
+    position: absolute
+}
+.shotOpenPlayTechniqueODiv {
+    position: absolute
+}
+.shotFreeKickAndPenaltyTechniqueDiv {
+    position: absolute
+}
+.shotKickOffTechniqueDiv {
+    position: absolute
+}
+.shotDurationDiv {
+    position: absolute
+}
+/************************** SHOT NO CHAIN DIVS **********************************/
+.foulWonNoChainDiv {
+    position: absolute;
+}
+.notPenaltyNoChainDiv {
+    position: absolute;
+}
+.fiftyFiftyDiv {
+    position: absolute;
+}
+.badBehaviourDiv {
+    position: absolute;
+}
+
+.chainDiv {
+    position: absolute;
+}
+.passChainHeightDiv {
+    position: absolute;
+}
+.groundPassChainDiv {
+    position: absolute;
+}
+.lowPassChainDiv {
+    position: absolute;
+}
+.highPassChainDiv {
+    position: absolute;
+}
+.dribbleDiv {
+    position: absolute;
+}
+.dribbleOverrunDiv {
+    position: absolute;
+}
+.shotChainTechniqueDiv {
+    position: absolute;
+}
+.shotOutcomeDiv {
+    position: absolute;
+}
+.injuryStoppageDiv {
+    position: absolute;
+}
+/************************************************** BACKGROUND COLOR OF EACH DIV ***************************************************************/
+.startDiv {
+    background: black;
+}
+
+/******************************************************* NO CHAIN BACKGROUND **********************************************************/
+.noChainDiv {
+    background: black;
+}
+.duelDiv {
+    background: white;  
+}
+.blockDiv {
+    background: white;
+}
+.foulCommittedDiv {
+    background: white;
+}
+.foulCommittedTypeDiv {
+    background: white;
+}
+.tackleAndInterceptionDiv {
+    background: white;
+}
+
+/*************************** PASS BACKGROUND ***************************/
+.passNoChainTypeDiv {
+    background: white;
+}
+.passNoChainHeightDiv {
+    background: white;
+}
+.passNoChainHeightRecoveryAndInterceptionDiv {
+    background: white;
+}
+.passNoChainThrowInHeightDiv {
+    background: white;
+}
+.passNoChainGroundBodyRecoveryAndInterceptionDiv {
+    background: white;
+}
+.passNoChainlowAndHighBodyRecoveryAndInterceptionDiv {
+    background: white;
+}
+.passNoChainBodyDiv {
+    background: white;
+}
+.passDurationDiv {
+    background: white;
+}
+.passOutcomeDiv {
+    background: white;
+}
+.passDefaultOutcomeDiv {
+    background: white;
+}
+.cornerTechniqueDiv {
+    background: white;
+}
+/*************************** PASS BACKGROUND ***************************/
+
+.clearanceDiv {
+    background: white;
+}
+.headClearanceDiv {
+    background: white;
+}
+.pressureDiv {
+    background: white;
+}
+.endPressureDiv {
+    background: white;
+}
+/*************************** GOAL KEEPER BACKGROUND ***************************/
+.goalKepperDiv {
+    background: white;
+}
+.collectedDiv {
+    background: white;
+}
+.punchDiv {
+    background: white;
+}
+.smotherDiv {
+    background: white;
+}
+.savedDiv {
+    background: white;
+}
+.goalKeeperBodyDiv {
+    background: white;
+}
+.shotSavedStateDiv{
+   background: white; 
+}
+.shotSavedTechniqueDiv {
+    background: white;
+}
+.shotFacedDiv {
+    background: white;
+}
+.keeperSweeperDiv {
+    background: white;
+}
+.goalAndPenaltyConcededDiv {
+    background: white;
+}
+.savedToPostDiv {
+    background: white;
+}
+/*************************** GOAL KEEPER BACKGROUND ***************************/
+
+/*************************** SHOT BACKGROUND ***************************/
+.shotDiv {
+    background: white;
+}
+.shotOpenPlayDiv {
+    background: white;
+}
+.shotChainDiv {
+    background: white;
+}
+.shotOpenPlayTechniqueRLDiv {
+    background: white;
+}
+.shotOpenPlayTechniqueHDiv {
+    background: white;
+}
+.shotOpenPlayTechniqueODiv {
+    background: white;
+}
+.shotFreeKickAndPenaltyTechniqueDiv {
+    background: white;
+}
+.shotKickOffTechniqueDiv {
+    background: white;
+}
+.shotOutcomeDiv {
+    background: white;
+}
+/*************************** SHOT BACKGROUND ***************************/
+
+.ballRecoveryDiv {
+    background: white;
+}
+.foulWonNoChainDiv {
+    background: white;
+}
+.notPenaltyNoChainDiv {
+    background: white;
+}
+.fiftyFiftyDiv {
+    background: white;
+}
+.badBehaviourDiv {
+    background: white;
+}
+
+/********************************************************* CHAIN BACKGROUND *****************************************************/
+.chainDiv {
+    background: black;
+}
+.passChainHeightDiv {
+    background: white;
+}
+.groundPassChainDiv {
+    background: white;
+}
+.lowPassChainDiv {
+    background: white;
+}
+.highPassChainDiv {
+    background: white;
+}
+.dribbleDiv {
+    background: white;
+}
+.dribbleOverrunDiv {
+    background: white;
+}
+.shotChainTechniqueDiv {
+    background: white;
+}
+.injuryStoppageDiv {
+    background: white;
+}
